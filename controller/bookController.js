@@ -54,7 +54,7 @@ exports.compareOTP = async(req, res) => {
         req.session.UserPatients = await patient.fetch_User_Patients(Patient.User_ID.user_ID)
     }
     if (req.session.UserPatients != null) {
-        Patient.patientList = req.session.UserPatients
+        Patient.patientList = req.session.UserPatients.rows
         Patient.hasHistory = true
     }
     if (Patient.inputOTP == req.session.Patient.OTP) {

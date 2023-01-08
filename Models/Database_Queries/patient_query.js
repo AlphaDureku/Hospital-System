@@ -33,13 +33,13 @@ exports.fetchPatient_Appointments_Using_Email = async function(patient_Email) {
 }
 
 exports.fetch_User_Patients = async function(user_ID) {
-    return await model.patient.findAll({
+    return await model.patient.findAndCountAll({
         raw: true,
         attributes: [
             'patient_ID',
             'patient_first_name',
             'patient_last_name',
-            'patient_gender', [Sequelize.fn('COUNT', Sequelize.col('patient_ID')), 'count'],
+            'patient_gender',
         ],
         include: [{
             model: model.user,
